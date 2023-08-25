@@ -1,2 +1,6 @@
 *.DS_Store*
+<<<<<<< HEAD
 SCRD32_firmware_official/build
+=======
+SCRD32_firmware_official/buid/
+>>>>>>> 5000a892becc40a67c5c2ebd21723d875407fc31
