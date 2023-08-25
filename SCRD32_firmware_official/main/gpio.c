@@ -25,6 +25,7 @@ bool gChannelMinusBtnClicked = false;
 extern uint8_t gVolume;
 extern uint8_t gVox;
 extern uint8_t gChannelNum;
+extern bool menuActive;
 
 void Reset_pin(void)
 {
@@ -133,10 +134,13 @@ static void IRAM_ATTR plusBtnTimerHandler(void *args)
         {
             plus_btn_timer_disable();
             cnt = 0;
-            
+
+            menuActive=true;
+            /*
             //channel+
             gChannelNum++;
             if(gChannelNum > MAX_CHANNEL_NUM) gChannelNum = MAX_CHANNEL_NUM;
+            */
             gChannelPlusBtnClicked = true;
         }
     }
@@ -174,7 +178,9 @@ static void IRAM_ATTR minusBtnTimerHandler(void *args)
         {
             minus_btn_timer_disable();
             cnt = 0;
-            
+            menuActive=true;
+            /*
+
             //channel-
             if(gChannelNum > 0 && gChannelNum < MAX_CHANNEL_NUM)
             {
@@ -182,6 +188,8 @@ static void IRAM_ATTR minusBtnTimerHandler(void *args)
                 if(gChannelNum > MAX_CHANNEL_NUM) gChannelNum = 0;
                 gChannelMinusBtnClicked = true;
             }
+            */
+            gChannelMinusBtnClicked = true;
         }
     }
 }
