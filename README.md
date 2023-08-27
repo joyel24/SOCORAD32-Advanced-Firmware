@@ -13,6 +13,7 @@ Todo:
 <br>-Volume to EEPROM
 <br>-TX Power submenu section + EEPROM + serial
 <br>-Mute function
+<br>-Clarify readme & upload video how & to add video links 
 
 # SOCORAD32 - ESP32 SOftware COntrolled RADio
 
