@@ -409,9 +409,10 @@ void setVoxBandCts()
 
 void showMenu()
 {
-		gScreenRefresh = true;
-		ssd1306_clear_screen(&dev, false);
+	gScreenRefresh = true;
+	ssd1306_clear_screen(&dev, false);
     char buf[20];
+	uint8_t menuItemsNum=4;
     
     switch (menuCurentItem){
       case 1:
@@ -436,6 +437,12 @@ void showMenu()
         ssd1306_clear_line(&dev, 3, 0);
         ssd1306_display_text(&dev, 3, buf, 16, false);
         memset(buf, 0, sizeof(buf));
+
+		sprintf(buf, "TX Power");
+        ssd1306_clear_line(&dev, 4, 0);
+        ssd1306_display_text(&dev, 4, buf, 16, false);
+        memset(buf, 0, sizeof(buf));
+
         break;
 
       case 2:
@@ -460,6 +467,12 @@ void showMenu()
         ssd1306_clear_line(&dev, 3, 0);
         ssd1306_display_text(&dev, 3, buf, 16, false);
         memset(buf, 0, sizeof(buf));
+
+		sprintf(buf, "TX Power");
+        ssd1306_clear_line(&dev, 4, 0);
+        ssd1306_display_text(&dev, 4, buf, 16, false);
+        memset(buf, 0, sizeof(buf));
+
         break;
         
       case 3:
@@ -474,7 +487,7 @@ void showMenu()
         ssd1306_clear_line(&dev, 1, 0);
         ssd1306_display_text(&dev, 1, buf, 16, false);
         memset(buf, 0, sizeof(buf));
-		
+
         sprintf(buf, "Exit");
         ssd1306_clear_line(&dev, 2, 0);
         ssd1306_display_text(&dev, 2, buf, 16, false);
@@ -484,15 +497,49 @@ void showMenu()
         ssd1306_clear_line(&dev, 3, 0);
         ssd1306_display_text(&dev, 3, buf, 16, false);
         memset(buf, 0, sizeof(buf));
+
+		sprintf(buf, "TX Power");
+        ssd1306_clear_line(&dev, 4, 0);
+        ssd1306_display_text(&dev, 4, buf, 16, false);
+        memset(buf, 0, sizeof(buf));
+
+	  case 4:
+      	memset(buf, 0, sizeof(buf));
+      	ssd1306_clear_screen(&dev, false);
+        sprintf(buf, "------MENU------");
+		    ssd1306_clear_line(&dev, 0, 0);
+		    ssd1306_display_text(&dev, 0, buf, 16, false);
+		    memset(buf, 0, sizeof(buf));
+
+        sprintf(buf, "Channels");
+        ssd1306_clear_line(&dev, 1, 0);
+        ssd1306_display_text(&dev, 1, buf, 16, false);
+        memset(buf, 0, sizeof(buf));
+
+        sprintf(buf, "Exit");
+        ssd1306_clear_line(&dev, 2, 0);
+        ssd1306_display_text(&dev, 2, buf, 16, false);
+        memset(buf, 0, sizeof(buf));
+
+        sprintf(buf, "Vox");
+        ssd1306_clear_line(&dev, 3, 0);
+        ssd1306_display_text(&dev, 3, buf, 16, false);
+        memset(buf, 0, sizeof(buf));
+		
+		sprintf(buf, "> TX Power");
+        ssd1306_clear_line(&dev, 4, 0);
+        ssd1306_display_text(&dev, 4, buf, 16, false);
+        memset(buf, 0, sizeof(buf));
+
         break;
 
       default:
         if (menuCurentItem < 1){
-          menuCurentItem = 3;
+          menuCurentItem = menuItemsNum;
           showMenu();
           break;
         }
-        else if(menuCurentItem > 3){menuCurentItem = 1;}
+        else if(menuCurentItem > menuItemsNum){menuCurentItem = 1;}
         showMenu();
         break;
     }
