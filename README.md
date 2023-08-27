@@ -48,8 +48,8 @@ Walkie Talkie
 <br/>IoT (data transmission module)
 <br/><br/>The AT commands are in the repository. It includes commands for volume control, power output, RX/TX frequencies, voice activated exhange, squelching, etc.
 <br/>The device contains a dedicated PTT button and extra buttons for user configurations.
-
-<br/>![SOCORAD32 high rez](https://user-images.githubusercontent.com/88499684/215540777-c825e2d2-a014-41b9-847e-6e92eacf6c23.png)
+<br><br>Menu looks like:
+<br/>![SOCORAD32 high rez](https://github.com/joyel24/SOCORAD32-Advanced-Firmware/blob/main/DOCS/socorad32-advanced-menu.jpg?raw=true)
 
 ## First run / Flashing
 See [Final Firmware](DOCS/Final_Firmware.md) for instructions
