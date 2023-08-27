@@ -11,7 +11,8 @@ Why SOCORAD32-Advanced-Firmware?
 Todo:
 <br>-VOX to EEPROM
 <br>-Volume to EEPROM
-<br>-TX Power submenu section + EEPROM + serial 
+<br>-TX Power submenu section + EEPROM + serial
+<br>-Mute function
 
 # SOCORAD32 - ESP32 SOftware COntrolled RADio
 
