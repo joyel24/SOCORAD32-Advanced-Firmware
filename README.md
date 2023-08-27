@@ -9,7 +9,6 @@ Why SOCORAD32-Advanced-Firmware?
 
 
 Todo:
-<br>-VOX check uart.c like gVolumePlusBtnClicked to be inspired
 <br>-VOX to EEPROM
 <br>-Volume to EEPROM
 <br>-TX Power submenu section + EEPROM + serial 
