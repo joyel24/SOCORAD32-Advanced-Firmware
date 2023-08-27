@@ -43,3 +43,4 @@ Walkie Talkie
 
 ## First run / Flashing
 See [Final Firmware](DOCS/Final_Firmware.md) for instructions
+<br> I made a very easy flash how to on windows [BIN/README.md](BIN/README.md)
