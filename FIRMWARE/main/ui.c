@@ -421,14 +421,17 @@ void showMenu()
 		    ssd1306_clear_line(&dev, 0, 0);
 		    ssd1306_display_text(&dev, 0, buf, 16, false);
 		    memset(buf, 0, sizeof(buf));
+
         sprintf(buf, "> Channels");
         ssd1306_clear_line(&dev, 1, 0);
         ssd1306_display_text(&dev, 1, buf, 16, false);
         memset(buf, 0, sizeof(buf));
+
         sprintf(buf, "Exit");
         ssd1306_clear_line(&dev, 2, 0);
         ssd1306_display_text(&dev, 2, buf, 16, false);
         memset(buf, 0, sizeof(buf));
+
         sprintf(buf, "Vox");
         ssd1306_clear_line(&dev, 3, 0);
         ssd1306_display_text(&dev, 3, buf, 16, false);
@@ -442,14 +445,17 @@ void showMenu()
 		    ssd1306_clear_line(&dev, 0, 0);
 		    ssd1306_display_text(&dev, 0, buf, 16, false);
 		    memset(buf, 0, sizeof(buf));
+			
         sprintf(buf, "Channels");
         ssd1306_clear_line(&dev, 1, 0);
         ssd1306_display_text(&dev, 1, buf, 16, false);
         memset(buf, 0, sizeof(buf));
+
         sprintf(buf, "> Exit");
         ssd1306_clear_line(&dev, 2, 0);
         ssd1306_display_text(&dev, 2, buf, 16, false);
         memset(buf, 0, sizeof(buf));
+
         sprintf(buf, "Vox");
         ssd1306_clear_line(&dev, 3, 0);
         ssd1306_display_text(&dev, 3, buf, 16, false);
@@ -463,14 +469,17 @@ void showMenu()
 		    ssd1306_clear_line(&dev, 0, 0);
 		    ssd1306_display_text(&dev, 0, buf, 16, false);
 		    memset(buf, 0, sizeof(buf));
+
         sprintf(buf, "Channels");
         ssd1306_clear_line(&dev, 1, 0);
         ssd1306_display_text(&dev, 1, buf, 16, false);
         memset(buf, 0, sizeof(buf));
+		
         sprintf(buf, "Exit");
         ssd1306_clear_line(&dev, 2, 0);
         ssd1306_display_text(&dev, 2, buf, 16, false);
         memset(buf, 0, sizeof(buf));
+
         sprintf(buf, "> Vox");
         ssd1306_clear_line(&dev, 3, 0);
         ssd1306_display_text(&dev, 3, buf, 16, false);
