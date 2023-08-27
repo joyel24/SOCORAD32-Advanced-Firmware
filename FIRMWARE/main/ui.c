@@ -309,7 +309,7 @@ void getChannelInfo(uint8_t channel)
 		gTxCtcss = channelInfo[gChannelNum].tx_ctcss;
 
 		gBand = channelInfo[gChannelNum].band;
-		gVox  = channelInfo[gChannelNum].vox;
+		//gVox  = channelInfo[gChannelNum].vox;
 		gPowerLevel = channelInfo[gChannelNum].power_level;
 	}
 }
