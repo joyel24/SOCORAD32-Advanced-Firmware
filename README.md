@@ -1,8 +1,18 @@
+Why SOCORAD32-Advanced-Firmware?
+<br>-We have now a menu to:
+<br>--Change channel quickly
+<br>--Edit VOX level
+<br>--more comming...
+<br>-The bootup is faster
+<br>-The interface is faster (You can now change volume easily)
+  
+
+
 Todo:
 <br>-VOX check uart.c like gVolumePlusBtnClicked to be inspired
 <br>-VOX to EEPROM
 <br>-Volume to EEPROM
-<br>-TX Power menu section
+<br>-TX Power submenu section + EEPROM + serial 
 
 # SOCORAD32 - ESP32 SOftware COntrolled RADio
 
