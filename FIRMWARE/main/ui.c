@@ -311,13 +311,13 @@ void getChannelInfo(uint8_t channel)
 
 		gBand = channelInfo[gChannelNum].band;
 		//gVox  = channelInfo[gChannelNum].vox;
-		gPowerLevel = channelInfo[gChannelNum].power_level;
+		//gPowerLevel = channelInfo[gChannelNum].power_level;
 	}
 }
 void uiBootScreenLoad(uint16_t delayms)
 {
 	// gChannelNum = 3;
-	// saveChannelInfo();
+	saveChannelInfo();
 
 	readChannelInfo();//read from eeprom
 		

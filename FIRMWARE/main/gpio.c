@@ -142,6 +142,7 @@ static void IRAM_ATTR plusBtnTimerHandler(void *args)
                 //if(menuCurentItem==3){menuCurentItem=1;}
                 gVox++;
                 gVoxChanged = true;
+                //saveVoxEEPROM();
                 gScreenRefresh = true;
                 
                 //channel+
@@ -223,6 +224,7 @@ static void IRAM_ATTR minusBtnTimerHandler(void *args)
                 //if(menuCurentItem==3){menuCurentItem=1;}
                 gVox--;
                 gVoxChanged = true;
+                //saveVoxEEPROM();
                 gScreenRefresh = true;
                 //channel+
                 //gChannelNum++;
