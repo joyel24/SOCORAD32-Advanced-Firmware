@@ -19,6 +19,7 @@ bool menuActive = false;
 bool chanListActive = false;
 uint8_t menuCurentItem	=	1;
 bool voxMenuActive = false;
+uint8_t menuItemsTotal=4;
 
 channel_config_t channelInfo[MAX_CHANNEL_NUM] = {
 	//RFV		TFV		  RxCT,TxCT,Vox, BAND,		 PowerLevel
@@ -412,16 +413,15 @@ void showMenu()
 	gScreenRefresh = true;
 	ssd1306_clear_screen(&dev, false);
     char buf[20];
-	uint8_t menuItemsNum=4;
     
     switch (menuCurentItem){
       case 1:
       	memset(buf, 0, sizeof(buf));
       	ssd1306_clear_screen(&dev, false);
       	sprintf(buf, "------MENU------");
-		    ssd1306_clear_line(&dev, 0, 0);
-		    ssd1306_display_text(&dev, 0, buf, 16, false);
-		    memset(buf, 0, sizeof(buf));
+		ssd1306_clear_line(&dev, 0, 0);
+		ssd1306_display_text(&dev, 0, buf, 16, false);
+		memset(buf, 0, sizeof(buf));
 
         sprintf(buf, "> Channels");
         ssd1306_clear_line(&dev, 1, 0);
@@ -449,9 +449,9 @@ void showMenu()
       	memset(buf, 0, sizeof(buf));
       	ssd1306_clear_screen(&dev, false);
         sprintf(buf, "------MENU------");
-		    ssd1306_clear_line(&dev, 0, 0);
-		    ssd1306_display_text(&dev, 0, buf, 16, false);
-		    memset(buf, 0, sizeof(buf));
+		ssd1306_clear_line(&dev, 0, 0);
+		ssd1306_display_text(&dev, 0, buf, 16, false);
+		memset(buf, 0, sizeof(buf));
 			
         sprintf(buf, "Channels");
         ssd1306_clear_line(&dev, 1, 0);
@@ -479,9 +479,9 @@ void showMenu()
       	memset(buf, 0, sizeof(buf));
       	ssd1306_clear_screen(&dev, false);
         sprintf(buf, "------MENU------");
-		    ssd1306_clear_line(&dev, 0, 0);
-		    ssd1306_display_text(&dev, 0, buf, 16, false);
-		    memset(buf, 0, sizeof(buf));
+		ssd1306_clear_line(&dev, 0, 0);
+		ssd1306_display_text(&dev, 0, buf, 16, false);
+		memset(buf, 0, sizeof(buf));
 
         sprintf(buf, "Channels");
         ssd1306_clear_line(&dev, 1, 0);
@@ -503,13 +503,15 @@ void showMenu()
         ssd1306_display_text(&dev, 4, buf, 16, false);
         memset(buf, 0, sizeof(buf));
 
+		break;
+		
 	  case 4:
       	memset(buf, 0, sizeof(buf));
       	ssd1306_clear_screen(&dev, false);
         sprintf(buf, "------MENU------");
-		    ssd1306_clear_line(&dev, 0, 0);
-		    ssd1306_display_text(&dev, 0, buf, 16, false);
-		    memset(buf, 0, sizeof(buf));
+		ssd1306_clear_line(&dev, 0, 0);
+		ssd1306_display_text(&dev, 0, buf, 16, false);
+		memset(buf, 0, sizeof(buf));
 
         sprintf(buf, "Channels");
         ssd1306_clear_line(&dev, 1, 0);
@@ -535,11 +537,11 @@ void showMenu()
 
       default:
         if (menuCurentItem < 1){
-          menuCurentItem = menuItemsNum;
+          menuCurentItem = menuItemsTotal;
           showMenu();
           break;
         }
-        else if(menuCurentItem > menuItemsNum){menuCurentItem = 1;}
+        else if(menuCurentItem > menuItemsTotal){menuCurentItem = 1;}
         showMenu();
         break;
     }
