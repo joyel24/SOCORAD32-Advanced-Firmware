@@ -18,6 +18,7 @@ uint8_t gTxCtcss	=	0;
 bool menuActive = false;
 bool chanListActive = false;
 uint8_t menuCurentItem	=	1;
+bool voxMenuActive = false;
 
 channel_config_t channelInfo[MAX_CHANNEL_NUM] = {
 	//RFV		TFV		  RxCT,TxCT,Vox, BAND,		 PowerLevel
@@ -420,7 +421,7 @@ void showMenu()
 		    ssd1306_clear_line(&dev, 0, 0);
 		    ssd1306_display_text(&dev, 0, buf, 16, false);
 		    memset(buf, 0, sizeof(buf));
-        sprintf(buf, ">Channels");
+        sprintf(buf, "> Channels");
         ssd1306_clear_line(&dev, 1, 0);
         ssd1306_display_text(&dev, 1, buf, 16, false);
         memset(buf, 0, sizeof(buf));
@@ -428,7 +429,7 @@ void showMenu()
         ssd1306_clear_line(&dev, 2, 0);
         ssd1306_display_text(&dev, 2, buf, 16, false);
         memset(buf, 0, sizeof(buf));
-        sprintf(buf, "3");
+        sprintf(buf, "Vox");
         ssd1306_clear_line(&dev, 3, 0);
         ssd1306_display_text(&dev, 3, buf, 16, false);
         memset(buf, 0, sizeof(buf));
@@ -445,11 +446,11 @@ void showMenu()
         ssd1306_clear_line(&dev, 1, 0);
         ssd1306_display_text(&dev, 1, buf, 16, false);
         memset(buf, 0, sizeof(buf));
-        sprintf(buf, ">Exit");
+        sprintf(buf, "> Exit");
         ssd1306_clear_line(&dev, 2, 0);
         ssd1306_display_text(&dev, 2, buf, 16, false);
         memset(buf, 0, sizeof(buf));
-        sprintf(buf, "3");
+        sprintf(buf, "Vox");
         ssd1306_clear_line(&dev, 3, 0);
         ssd1306_display_text(&dev, 3, buf, 16, false);
         memset(buf, 0, sizeof(buf));
@@ -470,7 +471,7 @@ void showMenu()
         ssd1306_clear_line(&dev, 2, 0);
         ssd1306_display_text(&dev, 2, buf, 16, false);
         memset(buf, 0, sizeof(buf));
-        sprintf(buf, ">3");
+        sprintf(buf, "> Vox");
         ssd1306_clear_line(&dev, 3, 0);
         ssd1306_display_text(&dev, 3, buf, 16, false);
         memset(buf, 0, sizeof(buf));
@@ -503,6 +504,17 @@ void showChannels(){
     memset(buf, 0, sizeof(buf));
 }
 
+void showVox(){
+		gScreenRefresh = true;
+		ssd1306_clear_screen(&dev, false);
+    char buf[20];
+
+		sprintf(buf, "VOX: %d", gVox);
+		ssd1306_clear_line(&dev, 3, 0);
+    ssd1306_display_text(&dev, 3, buf, 16, false);
+    memset(buf, 0, sizeof(buf));
+}
+
 void uiTask(void *arg)
 {
     uiInit();
@@ -526,6 +538,14 @@ void uiTask(void *arg)
  		    		if(gScreenRefresh)
  						{
  								showChannels();
+ 		    				gScreenRefresh = false;
+ 		    		}
+ 		    		vTaskDelay(pdMS_TO_TICKS(10));
+ 		    }
+ 		    else if(voxMenuActive==true){
+ 		    		if(gScreenRefresh)
+ 						{
+ 								showVox();
  		    				gScreenRefresh = false;
  		    		}
  		    		vTaskDelay(pdMS_TO_TICKS(10));
