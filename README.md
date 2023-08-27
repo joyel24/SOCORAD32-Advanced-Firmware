@@ -49,7 +49,9 @@ Walkie Talkie
 <br/><br/>The AT commands are in the repository. It includes commands for volume control, power output, RX/TX frequencies, voice activated exhange, squelching, etc.
 <br/>The device contains a dedicated PTT button and extra buttons for user configurations.
 <br><br>Menu looks like:
-<br/>![SOCORAD32 high rez](https://github.com/joyel24/SOCORAD32-Advanced-Firmware/blob/main/DOCS/socorad32-advanced-menu.jpg?raw=true)
+<br/>![SOCORAD32 menu](https://github.com/joyel24/SOCORAD32-Advanced-Firmware/blob/main/DOCS/socorad32-advanced-menu.jpg?raw=true)
+<br><br>Home looks like:
+<br/>![SOCORAD32 home](https://github.com/joyel24/SOCORAD32-Advanced-Firmware/blob/main/DOCS/socorad-home.jpg?raw=true)
 
 ## First run / Flashing
 See [Final Firmware](DOCS/Final_Firmware.md) for instructions
