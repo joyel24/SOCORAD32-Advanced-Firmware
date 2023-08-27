@@ -1,6 +1,8 @@
 Todo:
 <br>-VOX check uart.c like gVolumePlusBtnClicked to be inspired
+<br>-VOX to EEPROM
 <br>-Volume to EEPROM
+<br>-TX Power menu section
 
 # SOCORAD32 - ESP32 SOftware COntrolled RADio
 
