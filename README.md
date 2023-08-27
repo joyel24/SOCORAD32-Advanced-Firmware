@@ -1,7 +1,6 @@
 Todo:
-
--VOX check uart.c like gVolumePlusBtnClicked to be inspired
--Volume to EEPROM
+<br>-VOX check uart.c like gVolumePlusBtnClicked to be inspired
+<br>-Volume to EEPROM
 
 
 
