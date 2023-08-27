@@ -132,9 +132,18 @@ static void IRAM_ATTR plusBtnTimerHandler(void *args)
                 gChannelNum++;
                 gScreenRefresh = true;
                 //channel+
-                gChannelNum++;
+                //gChannelNum++;
                 if(gChannelNum > MAX_CHANNEL_NUM) gChannelNum = 0;
                 gChannelPlusBtnClicked = true;
+            }
+            else if(voxMenuActive==true){
+                //if(menuCurentItem==3){menuCurentItem=1;}
+                gVox++;
+                gScreenRefresh = true;
+                //channel+
+                //gChannelNum++;
+                if(gVox > 8) gVox = 8;
+                //gChannelPlusBtnClicked = true;
             }
             else{
                 //volume+ 
@@ -156,7 +165,7 @@ static void IRAM_ATTR plusBtnTimerHandler(void *args)
             plus_btn_timer_disable();
             cnt = 0;
 
-            if(menuActive==false && chanListActive==false){menuActive=true;menuCurentItem=1;gScreenRefresh=true;}
+            if(menuActive==false && chanListActive==false && voxMenuActive==false){menuActive=true;menuCurentItem=1;gScreenRefresh=true;}
             
             else if(menuActive==true){
                     if(menuCurentItem==2){menuActive=false; gScreenRefresh=true;}
@@ -205,6 +214,15 @@ static void IRAM_ATTR minusBtnTimerHandler(void *args)
                 if(gChannelNum > MAX_CHANNEL_NUM) gChannelNum = MAX_CHANNEL_NUM;
                     {gChannelMinusBtnClicked = true;}
             }
+            else if(voxMenuActive==true){
+                //if(menuCurentItem==3){menuCurentItem=1;}
+                gVox--;
+                gScreenRefresh = true;
+                //channel+
+                //gChannelNum++;
+                if(gVox > 0) gVox = 0;
+                //gChannelPlusBtnClicked = true;
+            }
             else{
                 //volume- 
                 gVolume--;
@@ -226,7 +244,7 @@ static void IRAM_ATTR minusBtnTimerHandler(void *args)
             minus_btn_timer_disable();
             cnt = 0;
 
-            if(menuActive==false && chanListActive==false){menuActive=true;menuCurentItem=1;gScreenRefresh=true;}
+            if(menuActive==false && chanListActive==false && voxMenuActive==false){menuActive=true;menuCurentItem=1;gScreenRefresh=true;}
             
             else if(menuActive==true){
                     if(menuCurentItem==2){menuActive=false; gScreenRefresh=true;}
