@@ -35,6 +35,7 @@ extern bool gChannelMinusBtnClicked;
 extern uint8_t	gCtcssList[38][2];
 extern uint8_t gRxCtcss;
 extern uint8_t gTxCtcss;
+extern bool gVoxChanged;
 
 extern bool bleConnected;
 
@@ -213,6 +214,11 @@ static void uart_tx_task(void *arg)
             if(gChannelMinusBtnClicked)    gChannelMinusBtnClicked = false;
 
             getChannelInfo(gChannelNum);
+            uartVoxSetting();
+        }
+
+        if(gVoxChanged){
+            gVoxChanged=false;
             uartVoxSetting();
         }
 

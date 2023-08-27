@@ -21,6 +21,7 @@ bool gVoxPlusBtnClicked = false;
 bool gVoxMinusBtnClicked = false;
 bool gChannelPlusBtnClicked = false;
 bool gChannelMinusBtnClicked = false;
+bool gVoxChanged = false;
 
 extern uint8_t gVolume;
 extern uint8_t gVox;
@@ -139,7 +140,9 @@ static void IRAM_ATTR plusBtnTimerHandler(void *args)
             else if(voxMenuActive==true && gVox <8){
                 //if(menuCurentItem==3){menuCurentItem=1;}
                 gVox++;
+                gVoxChanged = true;
                 gScreenRefresh = true;
+                
                 //channel+
                 //gChannelNum++;
                 //if(gVox > 8) gVox = 8;
@@ -217,6 +220,7 @@ static void IRAM_ATTR minusBtnTimerHandler(void *args)
             else if(voxMenuActive==true && gVox > 0){
                 //if(menuCurentItem==3){menuCurentItem=1;}
                 gVox--;
+                gVoxChanged = true;
                 gScreenRefresh = true;
                 //channel+
                 //gChannelNum++;
