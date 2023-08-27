@@ -506,7 +506,7 @@ void showChannels(){
 void uiTask(void *arg)
 {
     uiInit();
-    uiBootScreenLoad(1500);
+  uiBootScreenLoad(1000);
 	//uiMainScreenLoad();
 
     gScreenRefresh = true;
