@@ -1,3 +1,7 @@
+Todo:
+<br>-VOX check uart.c like gVolumePlusBtnClicked to be inspired
+<br>-Volume to EEPROM
+
 # SOCORAD32 - ESP32 SOftware COntrolled RADio
 
 <br/> (3D enclosure design already released)
