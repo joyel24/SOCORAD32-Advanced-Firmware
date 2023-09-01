@@ -1,4 +1,4 @@
-An easy video tutorial to flash the firmware to the ESP32 without building it<br>
+An easy video tutorial to flash the firmware to the ESP32 without building it: <br>
 https://youtu.be/p8CsZYtNyKA?feature=shared
 <br>
 
