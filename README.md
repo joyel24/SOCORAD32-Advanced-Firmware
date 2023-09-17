@@ -4,8 +4,11 @@ https://youtu.be/p8CsZYtNyKA?feature=shared
 All my videos about SOCORAD32:
 <br>https://youtube.com/playlist?list=PLKM5FNxF7v40e-xXsQXLKmqm96md1w-Cb&feature=shared
 <br>
-
-Why SOCORAD32-Advanced-Firmware?
+<br>Join Discord Community here: 
+<br>
+https://discord.gg/pUY9vXkR
+<br><br>
+# Why SOCORAD32-Advanced-Firmware?
 <br>-We have now a menu to:
 <br>--Change channel quickly
 <br>--Edit VOX level
@@ -23,7 +26,7 @@ Todo:
 <br>-Scan function
 <br>-Try to add a "vfo" mode
 
-<br><br>-------------------
+
 # SOCORAD32 - ESP32 SOftware COntrolled RADio
 
 <br/> (3D enclosure design already released)
@@ -39,7 +42,7 @@ Todo:
 Frequency Range: 400-470mhz covers most countries allocated walkie talkie frequencies, especially the license free ones.
 <br/> Frequency Step: 5K/6.25K/12.5K/25K
 <br/> RF Output Power: 2W/1W/0.5W
-<br/> Voice features, Tone Squelches, SMS cabapility:
+<br/> Voice features, Tone Squelches, SMS capability:
 <br/> Voice encryption (scrambling): 8 types
 <br/> SMS Receive/Transformer, baudrate: 1200
 <br/> CTCSS (38 groups) + CDCSS (83 groups)
