@@ -4,10 +4,11 @@ https://youtu.be/p8CsZYtNyKA?feature=shared
 All my videos about SOCORAD32:
 <br>https://youtube.com/playlist?list=PLKM5FNxF7v40e-xXsQXLKmqm96md1w-Cb&feature=shared
 <br>
-<br>Join Discord Community here: 
+<br>Join Radiosonde Discord Community here: 
 <br>
 https://discord.gg/pUY9vXkR
 <br><br>
+
 # Why SOCORAD32-Advanced-Firmware?
 <br>-We have now a menu to:
 <br>--Change channel quickly
