@@ -35,6 +35,7 @@ extern bool gChannelMinusBtnClicked;
 extern uint8_t	gCtcssList[38][2];
 extern uint8_t gRxCtcss;
 extern uint8_t gTxCtcss;
+extern bool gVoxChanged;
 
 extern bool bleConnected;
 
@@ -192,6 +193,26 @@ void readChannelInfo()
     }
 }
 
+void saveVoxEEPROM()
+{
+    char local_write[3] = {0};
+    local_write[0] = 'V';
+    local_write[1] = 'O';
+    local_write[2] = gVox;
+    ESP_LOGI("EEPROM", "gChannelNum = %d", gVox);
+    writeEPPROM(local_write, sizeof(local_write), EEPROM_ADDRESS_VOX);
+}
+
+void readVoxEEPROM()
+{
+    char local_read[3] = {0};
+    readEPPROM(local_read, sizeof(local_read), EEPROM_ADDRESS_VOX);
+    if(local_read[0] == 'V' && local_read[1] == 'O')
+    {
+        gChannelNum = local_read[2];
+    }
+}
+
 static void uart_tx_task(void *arg)
 {
     esp_log_level_set(TX_TASK_TAG, ESP_LOG_INFO);
@@ -213,6 +234,11 @@ static void uart_tx_task(void *arg)
             if(gChannelMinusBtnClicked)    gChannelMinusBtnClicked = false;
 
             getChannelInfo(gChannelNum);
+            uartVoxSetting();
+        }
+
+        if(gVoxChanged){
+            gVoxChanged=false;
             uartVoxSetting();
         }
 

@@ -15,26 +15,30 @@ bool    gBusyLock	=   false;
 bool	gScreenRefresh = false;
 uint8_t gRxCtcss	=	0;
 uint8_t gTxCtcss	=	0;
-
+bool menuActive = false;
+bool chanListActive = false;
+uint8_t menuCurentItem	=	1;
+bool voxMenuActive = false;
+uint8_t menuItemsTotal=4;
 
 channel_config_t channelInfo[MAX_CHANNEL_NUM] = {
 	//RFV		TFV		  RxCT,TxCT,Vox, BAND,		 PowerLevel
-	{410.025,	410.025,	1,	1,	3,	WIDE_BAND,	HIGH_LEVEL},
-	{410.850,	410.850,	2,	2,	3,	WIDE_BAND,	HIGH_LEVEL},
-	{411.675,	411.675,	3,	3,	3,	WIDE_BAND,	HIGH_LEVEL},
-	{412.500,	412.500,	4,	4,	3,	WIDE_BAND,	HIGH_LEVEL},
-	{413.325,	413.325,	5,	5,	3,	WIDE_BAND,	HIGH_LEVEL},
-	{414.150,	414.150,	6,	6,	3,	WIDE_BAND,	HIGH_LEVEL},
-	{414.975,	414.975,	7,	7,	3,	WIDE_BAND,	HIGH_LEVEL},
-	{415.800,	415.800,	8,	8,	3,	WIDE_BAND,	HIGH_LEVEL},
-	{416.625,	416.625,	9,	9,	3,	WIDE_BAND,	HIGH_LEVEL},
-	{417.450,	417.450,	10,	10,	3,	WIDE_BAND,	HIGH_LEVEL},
-	{418.275,	418.275,	11,	11,	3,	WIDE_BAND,	HIGH_LEVEL},
-	{419.100,	419.100,	12,	12,	3,	WIDE_BAND,	HIGH_LEVEL},
-	{419.925,	419.925,	13,	13,	3,	WIDE_BAND,	HIGH_LEVEL},
-	{420.750,	420.750,	14,	14,	3,	WIDE_BAND,	HIGH_LEVEL},
-	{421.575,	421.575,	15,	15,	3,	WIDE_BAND,	HIGH_LEVEL},
-	{422.400,	422.400,	16,	16,	3,	WIDE_BAND,	HIGH_LEVEL},
+	{446.00625,	446.00625,	0,	0,	0,	WIDE_BAND,	HIGH_LEVEL},
+	{446.01875,	446.01875,	0,	0,	0,	WIDE_BAND,	HIGH_LEVEL},
+	{446.03125,	446.03125,	0,	0,	0,	WIDE_BAND,	HIGH_LEVEL},
+	{446.04375,	446.04375,	0,	0,	0,	WIDE_BAND,	HIGH_LEVEL},
+	{446.05625,	446.05625,	0,	0,	0,	WIDE_BAND,	HIGH_LEVEL},
+	{446.06875,	446.06875,	0,	0,	0,	WIDE_BAND,	HIGH_LEVEL},
+	{446.08125,	446.08125,	0,	0,	0,	WIDE_BAND,	HIGH_LEVEL},
+	{446.09375,	446.09375,	0,	0,	0,	WIDE_BAND,	HIGH_LEVEL},
+	{446.10625,	446.10625,	0,	0,	0,	WIDE_BAND,	HIGH_LEVEL},
+	{446.11875,	446.11875,	0,	0,	0,	WIDE_BAND,	HIGH_LEVEL},
+	{446.13125,	446.13125,	0,	0,	0,	WIDE_BAND,	HIGH_LEVEL},
+	{446.14375,	446.14375,	0,	0,	0,	WIDE_BAND,	HIGH_LEVEL},
+	{446.15625,	446.15625,	0,	0,	0,	WIDE_BAND,	HIGH_LEVEL},
+	{446.16875,	446.16875,	0,	0,	0,	WIDE_BAND,	HIGH_LEVEL},
+	{446.18125,	446.18125,	0,	0,	0,	WIDE_BAND,	HIGH_LEVEL},
+	{446.19375,	446.19375,	0,	0,	0,	WIDE_BAND,	HIGH_LEVEL},
 	{423.225,	423.225,	17,	17,	3,	WIDE_BAND,	HIGH_LEVEL},
 	{424.050,	424.050,	18,	18,	3,	WIDE_BAND,	HIGH_LEVEL},
 	{424.875,	424.875,	19,	19,	3,	WIDE_BAND,	HIGH_LEVEL},
@@ -73,7 +77,7 @@ channel_config_t channelInfo[MAX_CHANNEL_NUM] = {
 
 const uint8_t	gCtcssList[39][2] = {
   //ToneFrequency H,   L
-	{/*0,*/ 	0xff, 0xff},		//Disable tone squelch
+  {/*0,*/ 	0xff, 0xff},		//disable CT / DCS
 	{/*1,*/ 	0x70, 0x06},		//67.0Hz 0670  -> 0x70 0x06
 	{/*2,*/ 	0x19, 0x07},		//71.9Hz 0719  -> 0x19 0x07
 	{/*3,*/ 	0x44, 0x07},		//74.4Hz 0744  -> 0x44 0x07
@@ -306,7 +310,7 @@ void getChannelInfo(uint8_t channel)
 		gTxCtcss = channelInfo[gChannelNum].tx_ctcss;
 
 		gBand = channelInfo[gChannelNum].band;
-		gVox  = channelInfo[gChannelNum].vox;
+		//gVox  = channelInfo[gChannelNum].vox;
 		gPowerLevel = channelInfo[gChannelNum].power_level;
 	}
 }
@@ -360,7 +364,7 @@ void setChannelAndVolume()
 {
     char buf[20];
     memset(buf, 0, sizeof(buf));
-    sprintf(buf, "CH:CH%02d, Vol:%01d", gChannelNum, gVolume);
+    sprintf(buf, "CH:CH%02d Vol:%01d", gChannelNum+1, gVolume);
     ssd1306_clear_line(&dev, 0, 0);
     ssd1306_display_text(&dev, 0, buf, 14, false);
     setVolumeImg();
@@ -371,9 +375,9 @@ void setTxFreqAndPower()
     char buf[20];
     memset(buf, 0, sizeof(buf));
     if(gPowerLevel == HIGH_LEVEL)
-        sprintf(buf, "Tx:%.3fM, P:H", gTFV);
+        sprintf(buf, "Tx:%.5fM H", gTFV);
     else if(gPowerLevel == LOW_LEVEL)
-        sprintf(buf, "Tx:%.3fM, P:L", gTFV);
+        sprintf(buf, "Tx:%.5fM L", gTFV);
     
     ssd1306_clear_line(&dev, 2, 0);
     ssd1306_display_text(&dev, 2, buf, 16, false);
@@ -383,10 +387,10 @@ void setRxFreq()
 {
     char buf[20];
     memset(buf, 0, sizeof(buf));
-    sprintf(buf, "Rx:%.3fM", gRFV);
+    sprintf(buf, "Rx:%.5fM", gRFV);
     
-    ssd1306_clear_line(&dev, 5, 0);
-    ssd1306_display_text(&dev, 5, buf, 16, false);
+    ssd1306_clear_line(&dev, 3, 0);
+    ssd1306_display_text(&dev, 3, buf, 16, false);
 }
 
 void setVoxBandCts()
@@ -404,18 +408,214 @@ void setVoxBandCts()
     ssd1306_display_text(&dev, 7, buf, 16, false);
 }
 
+void showMenu()
+{
+	gScreenRefresh = true;
+	ssd1306_clear_screen(&dev, false);
+    char buf[20];
+    
+    switch (menuCurentItem){
+      case 1:
+      	memset(buf, 0, sizeof(buf));
+      	ssd1306_clear_screen(&dev, false);
+      	sprintf(buf, "------MENU------");
+		ssd1306_clear_line(&dev, 0, 0);
+		ssd1306_display_text(&dev, 0, buf, 16, false);
+		memset(buf, 0, sizeof(buf));
+
+        sprintf(buf, "> Channels");
+        ssd1306_clear_line(&dev, 1, 0);
+        ssd1306_display_text(&dev, 1, buf, 16, false);
+        memset(buf, 0, sizeof(buf));
+
+        sprintf(buf, "Exit");
+        ssd1306_clear_line(&dev, 2, 0);
+        ssd1306_display_text(&dev, 2, buf, 16, false);
+        memset(buf, 0, sizeof(buf));
+
+        sprintf(buf, "Vox");
+        ssd1306_clear_line(&dev, 3, 0);
+        ssd1306_display_text(&dev, 3, buf, 16, false);
+        memset(buf, 0, sizeof(buf));
+
+		sprintf(buf, "TX Power");
+        ssd1306_clear_line(&dev, 4, 0);
+        ssd1306_display_text(&dev, 4, buf, 16, false);
+        memset(buf, 0, sizeof(buf));
+
+        break;
+
+      case 2:
+      	memset(buf, 0, sizeof(buf));
+      	ssd1306_clear_screen(&dev, false);
+        sprintf(buf, "------MENU------");
+		ssd1306_clear_line(&dev, 0, 0);
+		ssd1306_display_text(&dev, 0, buf, 16, false);
+		memset(buf, 0, sizeof(buf));
+			
+        sprintf(buf, "Channels");
+        ssd1306_clear_line(&dev, 1, 0);
+        ssd1306_display_text(&dev, 1, buf, 16, false);
+        memset(buf, 0, sizeof(buf));
+
+        sprintf(buf, "> Exit");
+        ssd1306_clear_line(&dev, 2, 0);
+        ssd1306_display_text(&dev, 2, buf, 16, false);
+        memset(buf, 0, sizeof(buf));
+
+        sprintf(buf, "Vox");
+        ssd1306_clear_line(&dev, 3, 0);
+        ssd1306_display_text(&dev, 3, buf, 16, false);
+        memset(buf, 0, sizeof(buf));
+
+		sprintf(buf, "TX Power");
+        ssd1306_clear_line(&dev, 4, 0);
+        ssd1306_display_text(&dev, 4, buf, 16, false);
+        memset(buf, 0, sizeof(buf));
+
+        break;
+        
+      case 3:
+      	memset(buf, 0, sizeof(buf));
+      	ssd1306_clear_screen(&dev, false);
+        sprintf(buf, "------MENU------");
+		ssd1306_clear_line(&dev, 0, 0);
+		ssd1306_display_text(&dev, 0, buf, 16, false);
+		memset(buf, 0, sizeof(buf));
+
+        sprintf(buf, "Channels");
+        ssd1306_clear_line(&dev, 1, 0);
+        ssd1306_display_text(&dev, 1, buf, 16, false);
+        memset(buf, 0, sizeof(buf));
+
+        sprintf(buf, "Exit");
+        ssd1306_clear_line(&dev, 2, 0);
+        ssd1306_display_text(&dev, 2, buf, 16, false);
+        memset(buf, 0, sizeof(buf));
+
+        sprintf(buf, "> Vox");
+        ssd1306_clear_line(&dev, 3, 0);
+        ssd1306_display_text(&dev, 3, buf, 16, false);
+        memset(buf, 0, sizeof(buf));
+
+		sprintf(buf, "TX Power");
+        ssd1306_clear_line(&dev, 4, 0);
+        ssd1306_display_text(&dev, 4, buf, 16, false);
+        memset(buf, 0, sizeof(buf));
+
+		break;
+		
+	  case 4:
+      	memset(buf, 0, sizeof(buf));
+      	ssd1306_clear_screen(&dev, false);
+        sprintf(buf, "------MENU------");
+		ssd1306_clear_line(&dev, 0, 0);
+		ssd1306_display_text(&dev, 0, buf, 16, false);
+		memset(buf, 0, sizeof(buf));
+
+        sprintf(buf, "Channels");
+        ssd1306_clear_line(&dev, 1, 0);
+        ssd1306_display_text(&dev, 1, buf, 16, false);
+        memset(buf, 0, sizeof(buf));
+
+        sprintf(buf, "Exit");
+        ssd1306_clear_line(&dev, 2, 0);
+        ssd1306_display_text(&dev, 2, buf, 16, false);
+        memset(buf, 0, sizeof(buf));
+
+        sprintf(buf, "Vox");
+        ssd1306_clear_line(&dev, 3, 0);
+        ssd1306_display_text(&dev, 3, buf, 16, false);
+        memset(buf, 0, sizeof(buf));
+		
+		sprintf(buf, "> TX Power");
+        ssd1306_clear_line(&dev, 4, 0);
+        ssd1306_display_text(&dev, 4, buf, 16, false);
+        memset(buf, 0, sizeof(buf));
+
+        break;
+
+      default:
+        if (menuCurentItem < 1){
+          menuCurentItem = menuItemsTotal;
+          showMenu();
+          break;
+        }
+        else if(menuCurentItem > menuItemsTotal){menuCurentItem = 1;}
+        showMenu();
+        break;
+    }
+    
+    //ssd1306_clear_line(&dev, 0, 0);
+    //ssd1306_display_text(&dev, 0, buf, 16, false);
+
+}
+
+void showChannels(){
+		gScreenRefresh = true;
+		ssd1306_clear_screen(&dev, false);
+    char buf[20];
+
+		sprintf(buf, "CHANNEL: %d", gChannelNum+1);
+		ssd1306_clear_line(&dev, 3, 0);
+    ssd1306_display_text(&dev, 3, buf, 16, false);
+    memset(buf, 0, sizeof(buf));
+}
+
+void showVox(){
+		gScreenRefresh = true;
+		ssd1306_clear_screen(&dev, false);
+    char buf[20];
+
+		sprintf(buf, "VOX: %d", gVox);
+		ssd1306_clear_line(&dev, 3, 0);
+    ssd1306_display_text(&dev, 3, buf, 16, false);
+    memset(buf, 0, sizeof(buf));
+}
+
 void uiTask(void *arg)
 {
     uiInit();
-    uiBootScreenLoad(1500);
-	uiMainScreenLoad();
+  uiBootScreenLoad(1000);
+	//uiMainScreenLoad();
+
+    gScreenRefresh = true;
+
     while(1)
     {
-		if(gScreenRefresh)
-		{
-			uiMainScreenLoad();
-			gScreenRefresh = false;
-		}
-        vTaskDelay(pdMS_TO_TICKS(10));
-    }
+    	if(menuActive==true){
+ 		    		//ssd1306_clear_screen(&dev, false);
+ 		    		if(gScreenRefresh)
+ 						{
+ 								showMenu();
+ 		    				gScreenRefresh = false;
+ 		    		}
+ 		    		vTaskDelay(pdMS_TO_TICKS(10));
+ 		    }
+ 		    else if(chanListActive==true){
+ 		    		if(gScreenRefresh)
+ 						{
+ 								showChannels();
+ 		    				gScreenRefresh = false;
+ 		    		}
+ 		    		vTaskDelay(pdMS_TO_TICKS(10));
+ 		    }
+ 		    else if(voxMenuActive==true){
+ 		    		if(gScreenRefresh)
+ 						{
+ 								showVox();
+ 		    				gScreenRefresh = false;
+ 		    		}
+ 		    		vTaskDelay(pdMS_TO_TICKS(10));
+ 		    }
+ 		    else{
+ 		    		//uiMainScreenLoad();
+ 						if(gScreenRefresh)
+ 						{
+ 							uiMainScreenLoad();
+ 							gScreenRefresh = false;
+ 						}
+ 				    vTaskDelay(pdMS_TO_TICKS(10));
+ 			  }
+ 		}
 }
