@@ -1,3 +1,7 @@
+
+Firmware bin is in this branch for the moment: https://github.com/joyel24/SOCORAD32-Advanced-Firmware/tree/menu/BIN
+
+
 Download & run Espressif Flash Download Tools:
 https://www.espressif.com/en/support/download/other-tools
 

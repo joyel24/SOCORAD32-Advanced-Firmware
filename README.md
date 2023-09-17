@@ -1,11 +1,20 @@
-Why SOCORAD32-Advanced-Firmware?
+An easy video tutorial to flash the firmware to the ESP32 without building it: <br>
+https://youtu.be/p8CsZYtNyKA?feature=shared
+<br>
+All my videos about SOCORAD32:
+<br>https://youtube.com/playlist?list=PLKM5FNxF7v40e-xXsQXLKmqm96md1w-Cb&feature=shared
+<br>
+<br>Join Discord Community here: 
+<br>
+https://discord.gg/pUY9vXkR
+<br><br>
+# Why SOCORAD32-Advanced-Firmware?
 <br>-We have now a menu to:
 <br>--Change channel quickly
 <br>--Edit VOX level
 <br>--more comming...
 <br>-The bootup is faster
 <br>-The interface is faster (You can now change volume easily)
-  
 
 
 Todo:
@@ -13,6 +22,10 @@ Todo:
 <br>-Volume to EEPROM
 <br>-TX Power submenu section + EEPROM + serial
 <br>-Mute function
+<br>-Clarify readme, upload how to video add links corresponding
+<br>-Scan function
+<br>-Try to add a "vfo" mode
+
 
 # SOCORAD32 - ESP32 SOftware COntrolled RADio
 
@@ -29,7 +42,7 @@ Todo:
 Frequency Range: 400-470mhz covers most countries allocated walkie talkie frequencies, especially the license free ones.
 <br/> Frequency Step: 5K/6.25K/12.5K/25K
 <br/> RF Output Power: 2W/1W/0.5W
-<br/> Voice features, Tone Squelches, SMS cabapility:
+<br/> Voice features, Tone Squelches, SMS capability:
 <br/> Voice encryption (scrambling): 8 types
 <br/> SMS Receive/Transformer, baudrate: 1200
 <br/> CTCSS (38 groups) + CDCSS (83 groups)
@@ -49,8 +62,12 @@ Walkie Talkie
 <br/><br/>The AT commands are in the repository. It includes commands for volume control, power output, RX/TX frequencies, voice activated exhange, squelching, etc.
 <br/>The device contains a dedicated PTT button and extra buttons for user configurations.
 
-<br/>![SOCORAD32 high rez](https://user-images.githubusercontent.com/88499684/215540777-c825e2d2-a014-41b9-847e-6e92eacf6c23.png)
-
 ## First run / Flashing
 See [Final Firmware](DOCS/Final_Firmware.md) for instructions
 <br> I made a very easy flash how to on windows [BIN/README.md](BIN/README.md)
+
+<br/>![SOCORAD32 high rez](https://user-images.githubusercontent.com/88499684/215540777-c825e2d2-a014-41b9-847e-6e92eacf6c23.png)
+<br><br>Menu looks like:
+<br/>![SOCORAD32 menu](https://github.com/joyel24/SOCORAD32-Advanced-Firmware/blob/main/DOCS/socorad32-advanced-menu.jpg?raw=true)
+<br><br>Home looks like:
+<br/>![SOCORAD32 home](https://github.com/joyel24/SOCORAD32-Advanced-Firmware/blob/main/DOCS/socorad-home.jpg?raw=true)
