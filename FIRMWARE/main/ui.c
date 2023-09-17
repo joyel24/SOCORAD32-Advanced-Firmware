@@ -15,7 +15,16 @@ bool    gBusyLock	=   false;
 bool	gScreenRefresh = false;
 uint8_t gRxCtcss	=	0;
 uint8_t gTxCtcss	=	0;
+<<<<<<< Updated upstream
 
+=======
+bool menuActive = false;
+bool chanListActive = false;
+uint8_t menuCurentItem	=	1;
+bool voxMenuActive = false;
+bool scanMenuActive = false;
+uint8_t menuItemsTotal=4;
+>>>>>>> Stashed changes
 
 channel_config_t channelInfo[MAX_CHANNEL_NUM] = {
 	//RFV		TFV		  RxCT,TxCT,Vox, BAND,		 PowerLevel
@@ -404,6 +413,174 @@ void setVoxBandCts()
     ssd1306_display_text(&dev, 7, buf, 16, false);
 }
 
+<<<<<<< Updated upstream
+=======
+void showMenu()
+{
+	gScreenRefresh = true;
+	ssd1306_clear_screen(&dev, false);
+    char buf[20];
+    
+    switch (menuCurentItem){
+      case 1:
+      	memset(buf, 0, sizeof(buf));
+      	ssd1306_clear_screen(&dev, false);
+      	sprintf(buf, "------MENU------");
+		ssd1306_clear_line(&dev, 0, 0);
+		ssd1306_display_text(&dev, 0, buf, 16, false);
+		memset(buf, 0, sizeof(buf));
+
+        sprintf(buf, "> Channels");
+        ssd1306_clear_line(&dev, 1, 0);
+        ssd1306_display_text(&dev, 1, buf, 16, false);
+        memset(buf, 0, sizeof(buf));
+
+        sprintf(buf, "Exit");
+        ssd1306_clear_line(&dev, 2, 0);
+        ssd1306_display_text(&dev, 2, buf, 16, false);
+        memset(buf, 0, sizeof(buf));
+
+        sprintf(buf, "Vox");
+        ssd1306_clear_line(&dev, 3, 0);
+        ssd1306_display_text(&dev, 3, buf, 16, false);
+        memset(buf, 0, sizeof(buf));
+
+		sprintf(buf, "Scan");
+        ssd1306_clear_line(&dev, 4, 0);
+        ssd1306_display_text(&dev, 4, buf, 16, false);
+        memset(buf, 0, sizeof(buf));
+
+        break;
+
+      case 2:
+      	memset(buf, 0, sizeof(buf));
+      	ssd1306_clear_screen(&dev, false);
+        sprintf(buf, "------MENU------");
+		ssd1306_clear_line(&dev, 0, 0);
+		ssd1306_display_text(&dev, 0, buf, 16, false);
+		memset(buf, 0, sizeof(buf));
+			
+        sprintf(buf, "Channels");
+        ssd1306_clear_line(&dev, 1, 0);
+        ssd1306_display_text(&dev, 1, buf, 16, false);
+        memset(buf, 0, sizeof(buf));
+
+        sprintf(buf, "> Exit");
+        ssd1306_clear_line(&dev, 2, 0);
+        ssd1306_display_text(&dev, 2, buf, 16, false);
+        memset(buf, 0, sizeof(buf));
+
+        sprintf(buf, "Vox");
+        ssd1306_clear_line(&dev, 3, 0);
+        ssd1306_display_text(&dev, 3, buf, 16, false);
+        memset(buf, 0, sizeof(buf));
+
+		sprintf(buf, "Scan");
+        ssd1306_clear_line(&dev, 4, 0);
+        ssd1306_display_text(&dev, 4, buf, 16, false);
+        memset(buf, 0, sizeof(buf));
+
+        break;
+        
+      case 3:
+      	memset(buf, 0, sizeof(buf));
+      	ssd1306_clear_screen(&dev, false);
+        sprintf(buf, "------MENU------");
+		ssd1306_clear_line(&dev, 0, 0);
+		ssd1306_display_text(&dev, 0, buf, 16, false);
+		memset(buf, 0, sizeof(buf));
+
+        sprintf(buf, "Channels");
+        ssd1306_clear_line(&dev, 1, 0);
+        ssd1306_display_text(&dev, 1, buf, 16, false);
+        memset(buf, 0, sizeof(buf));
+
+        sprintf(buf, "Exit");
+        ssd1306_clear_line(&dev, 2, 0);
+        ssd1306_display_text(&dev, 2, buf, 16, false);
+        memset(buf, 0, sizeof(buf));
+
+        sprintf(buf, "> Vox");
+        ssd1306_clear_line(&dev, 3, 0);
+        ssd1306_display_text(&dev, 3, buf, 16, false);
+        memset(buf, 0, sizeof(buf));
+
+		sprintf(buf, "Scan");
+        ssd1306_clear_line(&dev, 4, 0);
+        ssd1306_display_text(&dev, 4, buf, 16, false);
+        memset(buf, 0, sizeof(buf));
+
+		break;
+		
+	  case 4:
+      	memset(buf, 0, sizeof(buf));
+      	ssd1306_clear_screen(&dev, false);
+        sprintf(buf, "------MENU------");
+		ssd1306_clear_line(&dev, 0, 0);
+		ssd1306_display_text(&dev, 0, buf, 16, false);
+		memset(buf, 0, sizeof(buf));
+
+        sprintf(buf, "Channels");
+        ssd1306_clear_line(&dev, 1, 0);
+        ssd1306_display_text(&dev, 1, buf, 16, false);
+        memset(buf, 0, sizeof(buf));
+
+        sprintf(buf, "Exit");
+        ssd1306_clear_line(&dev, 2, 0);
+        ssd1306_display_text(&dev, 2, buf, 16, false);
+        memset(buf, 0, sizeof(buf));
+
+        sprintf(buf, "Vox");
+        ssd1306_clear_line(&dev, 3, 0);
+        ssd1306_display_text(&dev, 3, buf, 16, false);
+        memset(buf, 0, sizeof(buf));
+		
+		sprintf(buf, "> Scan");
+        ssd1306_clear_line(&dev, 4, 0);
+        ssd1306_display_text(&dev, 4, buf, 16, false);
+        memset(buf, 0, sizeof(buf));
+
+        break;
+
+      default:
+        if (menuCurentItem < 1){
+          menuCurentItem = menuItemsTotal;
+          showMenu();
+          break;
+        }
+        else if(menuCurentItem > menuItemsTotal){menuCurentItem = 1;}
+        showMenu();
+        break;
+    }
+    
+    //ssd1306_clear_line(&dev, 0, 0);
+    //ssd1306_display_text(&dev, 0, buf, 16, false);
+
+}
+
+void showChannels(){
+	gScreenRefresh = true;
+	ssd1306_clear_screen(&dev, false);
+    char buf[20];
+
+	sprintf(buf, "CHANNEL: %d", gChannelNum+1);
+	ssd1306_clear_line(&dev, 3, 0);
+    ssd1306_display_text(&dev, 3, buf, 16, false);
+    memset(buf, 0, sizeof(buf));
+}
+
+void showVox(){
+	gScreenRefresh = true;
+	ssd1306_clear_screen(&dev, false);
+    char buf[20];
+
+	sprintf(buf, "VOX: %d", gVox);
+	ssd1306_clear_line(&dev, 3, 0);
+    ssd1306_display_text(&dev, 3, buf, 16, false);
+    memset(buf, 0, sizeof(buf));
+}
+
+>>>>>>> Stashed changes
 void uiTask(void *arg)
 {
     uiInit();
@@ -411,6 +588,7 @@ void uiTask(void *arg)
 	uiMainScreenLoad();
     while(1)
     {
+<<<<<<< Updated upstream
 		if(gScreenRefresh)
 		{
 			uiMainScreenLoad();
@@ -418,4 +596,50 @@ void uiTask(void *arg)
 		}
         vTaskDelay(pdMS_TO_TICKS(10));
     }
+=======
+    	if(menuActive==true){
+			//ssd1306_clear_screen(&dev, false);
+			if(gScreenRefresh)
+				{
+						showMenu();
+					gScreenRefresh = false;
+			}
+			vTaskDelay(pdMS_TO_TICKS(10));
+ 		}
+		else if(chanListActive==true){
+				if(gScreenRefresh)
+					{
+							showChannels();
+						gScreenRefresh = false;
+				}
+				vTaskDelay(pdMS_TO_TICKS(10));
+		}
+		else if(voxMenuActive==true){
+				if(gScreenRefresh)
+					{
+						showVox();
+						gScreenRefresh = false;
+				}
+				vTaskDelay(pdMS_TO_TICKS(10));
+		}
+		else if(scanMenuActive==true){
+				if(gScreenRefresh)
+					{
+						
+						
+						gScreenRefresh = false;
+				}
+				vTaskDelay(pdMS_TO_TICKS(10));
+		}
+		else{
+				//uiMainScreenLoad();
+					if(gScreenRefresh)
+					{
+						uiMainScreenLoad();
+						gScreenRefresh = false;
+					}
+				vTaskDelay(pdMS_TO_TICKS(10));
+			}
+ 		}
+>>>>>>> Stashed changes
 }

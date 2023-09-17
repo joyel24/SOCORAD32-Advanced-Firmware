@@ -25,6 +25,17 @@ bool gChannelMinusBtnClicked = false;
 extern uint8_t gVolume;
 extern uint8_t gVox;
 extern uint8_t gChannelNum;
+<<<<<<< Updated upstream
+=======
+extern bool menuActive;
+extern uint8_t menuCurentItem;
+extern bool    gScreenRefresh;
+extern bool chanListActive;
+extern bool voxMenuActive;
+extern bool scanMenuActive;
+extern uint8_t menuItemsTotal;
+>>>>>>> Stashed changes
+
 
 void Reset_pin(void)
 {
@@ -134,6 +145,20 @@ static void IRAM_ATTR plusBtnTimerHandler(void *args)
             plus_btn_timer_disable();
             cnt = 0;
             
+<<<<<<< Updated upstream
+=======
+            else if(menuActive==true){
+                    if(menuCurentItem==2){menuActive=false; gScreenRefresh=true;}
+                    if(menuCurentItem==1){menuActive=false; gScreenRefresh=true; chanListActive=true;}
+                    if(menuCurentItem==3){menuActive=false; gScreenRefresh=true; voxMenuActive=true;}
+                    if(menuCurentItem==3){menuActive=false; gScreenRefresh=true; scanMenuActive=true;}
+                    if(menuCurentItem==menuItemsTotal){menuCurentItem=1;}
+            }
+            else if(chanListActive==true){chanListActive=false;gScreenRefresh=true;}
+            else if(voxMenuActive==true){voxMenuActive=false;gScreenRefresh=true;}
+
+            /*
+>>>>>>> Stashed changes
             //channel+
             gChannelNum++;
             if(gChannelNum > MAX_CHANNEL_NUM) gChannelNum = MAX_CHANNEL_NUM;
@@ -175,6 +200,21 @@ static void IRAM_ATTR minusBtnTimerHandler(void *args)
             minus_btn_timer_disable();
             cnt = 0;
             
+<<<<<<< Updated upstream
+=======
+            else if(menuActive==true){
+                    if(menuCurentItem==2){menuActive=false; gScreenRefresh=true;}
+                    if(menuCurentItem==1){menuActive=false; gScreenRefresh=true; chanListActive=true;}
+                    if(menuCurentItem==3){menuActive=false; gScreenRefresh=true; voxMenuActive=true;}
+                    if(menuCurentItem==4){menuActive=false; gScreenRefresh=true; scanMenuActive=true;}
+
+            }
+
+            else if(chanListActive==true){chanListActive=false;gScreenRefresh=true;}
+            else if(voxMenuActive==true){voxMenuActive=false;gScreenRefresh=true;}
+
+            /*
+>>>>>>> Stashed changes
             //channel-
             if(gChannelNum > 0 && gChannelNum < MAX_CHANNEL_NUM)
             {
