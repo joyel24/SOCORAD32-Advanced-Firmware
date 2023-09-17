@@ -1,6 +1,9 @@
 An easy video tutorial to flash the firmware to the ESP32 without building it: <br>
 https://youtu.be/p8CsZYtNyKA?feature=shared
 <br>
+All my videos about SOCORAD32:
+<br>https://youtube.com/playlist?list=PLKM5FNxF7v40e-xXsQXLKmqm96md1w-Cb&feature=shared
+<br>
 
 Why SOCORAD32-Advanced-Firmware?
 <br>-We have now a menu to:
@@ -9,7 +12,6 @@ Why SOCORAD32-Advanced-Firmware?
 <br>--more comming...
 <br>-The bootup is faster
 <br>-The interface is faster (You can now change volume easily)
-  
 
 
 Todo:
@@ -17,8 +19,11 @@ Todo:
 <br>-Volume to EEPROM
 <br>-TX Power submenu section + EEPROM + serial
 <br>-Mute function
-<br>-Clarify readme & upload video how & to add video links 
+<br>-Clarify readme, upload how to video add links corresponding
+<br>-Scan function
+<br>-Try to add a "vfo" mode
 
+<br><br>-------------------
 # SOCORAD32 - ESP32 SOftware COntrolled RADio
 
 <br/> (3D enclosure design already released)
