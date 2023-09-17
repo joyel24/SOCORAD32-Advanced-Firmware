@@ -574,6 +574,17 @@ void showVox(){
     memset(buf, 0, sizeof(buf));
 }
 
+void showScan(){
+	gScreenRefresh = true;
+	ssd1306_clear_screen(&dev, false);
+    char buf[20];
+	//sprintf(buf, "SCAN: %d", gVox);
+	sprintf(buf, "SCAN:");
+	ssd1306_clear_line(&dev, 3, 0);
+    ssd1306_display_text(&dev, 3, buf, 16, false);
+    memset(buf, 0, sizeof(buf));
+}
+
 void uiTask(void *arg)
 {
     uiInit();
@@ -583,8 +594,8 @@ void uiTask(void *arg)
     gScreenRefresh = true;
 
     while(1)
-    {
-    	if(menuActive==true){
+    {	//REPLACE WITH SWITCH CASE ?
+    	if(menuActive==true){ 
  		    		//ssd1306_clear_screen(&dev, false);
  		    		if(gScreenRefresh)
  						{
@@ -605,6 +616,14 @@ void uiTask(void *arg)
  		    		if(gScreenRefresh)
  						{
  								showVox();
+ 		    				gScreenRefresh = false;
+ 		    		}
+ 		    		vTaskDelay(pdMS_TO_TICKS(10));
+ 		    }
+			else if(scanMenuActive==true){
+ 		    		if(gScreenRefresh)
+ 						{
+ 								showScan();
  		    				gScreenRefresh = false;
  		    		}
  		    		vTaskDelay(pdMS_TO_TICKS(10));
