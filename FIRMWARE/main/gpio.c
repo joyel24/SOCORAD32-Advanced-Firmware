@@ -32,6 +32,7 @@ extern bool    gScreenRefresh;
 extern bool chanListActive;
 extern bool voxMenuActive;
 extern uint8_t menuItemsTotal;
+extern bool scanMenuActive;
 
 void Reset_pin(void)
 {
@@ -176,6 +177,7 @@ static void IRAM_ATTR plusBtnTimerHandler(void *args)
                     if(menuCurentItem==1){menuActive=false; gScreenRefresh=true; chanListActive=true;}
                     if(menuCurentItem==3){menuActive=false; gScreenRefresh=true; voxMenuActive=true;}
                     if(menuCurentItem==menuItemsTotal){menuCurentItem=1;}
+                    if(menuCurentItem==4){menuActive=false; gScreenRefresh=true; scanMenuActive=true;}
             }
             else if(chanListActive==true){chanListActive=false;gScreenRefresh=true;}
             else if(voxMenuActive==true){voxMenuActive=false;gScreenRefresh=true;}
@@ -256,6 +258,8 @@ static void IRAM_ATTR minusBtnTimerHandler(void *args)
                     if(menuCurentItem==2){menuActive=false; gScreenRefresh=true;}
                     if(menuCurentItem==1){menuActive=false; gScreenRefresh=true; chanListActive=true;}
                     if(menuCurentItem==3){menuActive=false; gScreenRefresh=true; voxMenuActive=true;}
+                    if(menuCurentItem==4){menuActive=false; gScreenRefresh=true; scanMenuActive=true;}
+
 
             }
 

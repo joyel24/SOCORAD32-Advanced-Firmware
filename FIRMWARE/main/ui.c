@@ -20,6 +20,7 @@ bool chanListActive = false;
 uint8_t menuCurentItem	=	1;
 bool voxMenuActive = false;
 uint8_t menuItemsTotal=4;
+bool scanMenuActive = false;
 
 channel_config_t channelInfo[MAX_CHANNEL_NUM] = {
 	//RFV		TFV		  RxCT,TxCT,Vox, BAND,		 PowerLevel
@@ -438,7 +439,7 @@ void showMenu()
         ssd1306_display_text(&dev, 3, buf, 16, false);
         memset(buf, 0, sizeof(buf));
 
-		sprintf(buf, "TX Power");
+		sprintf(buf, "Scan");
         ssd1306_clear_line(&dev, 4, 0);
         ssd1306_display_text(&dev, 4, buf, 16, false);
         memset(buf, 0, sizeof(buf));
@@ -468,7 +469,7 @@ void showMenu()
         ssd1306_display_text(&dev, 3, buf, 16, false);
         memset(buf, 0, sizeof(buf));
 
-		sprintf(buf, "TX Power");
+		sprintf(buf, "Scan");
         ssd1306_clear_line(&dev, 4, 0);
         ssd1306_display_text(&dev, 4, buf, 16, false);
         memset(buf, 0, sizeof(buf));
@@ -498,7 +499,7 @@ void showMenu()
         ssd1306_display_text(&dev, 3, buf, 16, false);
         memset(buf, 0, sizeof(buf));
 
-		sprintf(buf, "TX Power");
+		sprintf(buf, "Scan");
         ssd1306_clear_line(&dev, 4, 0);
         ssd1306_display_text(&dev, 4, buf, 16, false);
         memset(buf, 0, sizeof(buf));
@@ -528,7 +529,7 @@ void showMenu()
         ssd1306_display_text(&dev, 3, buf, 16, false);
         memset(buf, 0, sizeof(buf));
 		
-		sprintf(buf, "> TX Power");
+		sprintf(buf, "> Scan");
         ssd1306_clear_line(&dev, 4, 0);
         ssd1306_display_text(&dev, 4, buf, 16, false);
         memset(buf, 0, sizeof(buf));
