@@ -4,7 +4,7 @@ https://youtu.be/p8CsZYtNyKA?feature=shared
 All my videos about SOCORAD32:
 <br>https://youtube.com/playlist?list=PLKM5FNxF7v40e-xXsQXLKmqm96md1w-Cb&feature=shared
 <br>
-<br>Join Radiosonde Discord Community here: 
+<br>Join SOCORAD32 Discord Community here: 
 <br>
 https://discord.gg/pUY9vXkR
 <br><br>
