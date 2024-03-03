@@ -6,7 +6,7 @@ All my videos about SOCORAD32:
 <br>
 <br>Join SOCORAD32 Discord Community here: 
 <br>
-https://discord.gg/pUY9vXkR
+https://discord.gg/6VwVRRuCVW
 <br><br>
 
 # Why SOCORAD32-Advanced-Firmware?
