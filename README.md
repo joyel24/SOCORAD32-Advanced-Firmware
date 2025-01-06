@@ -65,7 +65,7 @@ Walkie Talkie
 
 ## First run / Flashing
 See [Final Firmware](DOCS/Final_Firmware.md) for instructions
-<br> I made a very easy flash how to on windows [BIN/README.md](BIN/README.md)
+<br> I made a very easy flash how to on windows [BIN/README.md](BIN/)
 
 <br/>![SOCORAD32 high rez](https://user-images.githubusercontent.com/88499684/215540777-c825e2d2-a014-41b9-847e-6e92eacf6c23.png)
 <br><br>Menu looks like:
